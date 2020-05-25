@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "766175154315",
+    "firebase_url": "https://kangaroo-2fe18.firebaseio.com",
+    "project_id": "kangaroo-2fe18",
+    "storage_bucket": "kangaroo-2fe18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766175154315:android:f4a43eb428611b3206c48e",
+        "android_client_info": {
+          "package_name": "com.example.kangaroo_FM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766175154315-ees8limr07oh3h16ff9hpopi6bt3940r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLsF-j03NNMTVc1liYLikl-LQ1QrZm8kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766175154315-ees8limr07oh3h16ff9hpopi6bt3940r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
