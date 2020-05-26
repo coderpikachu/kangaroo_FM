@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mysqltest/Meals/meal.dart';
 import 'homePage.dart';
 import 'orderPage.dart';
 import 'myPage.dart';
@@ -9,6 +10,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mysqltest/Data/meal-data.dart';
+import 'package:provider/provider.dart';
 import '../Detail/detailPage.dart';
 import '../Meals/meals-api.dart';
-import '../Meals/meals.dart';
+import '../Meals/meal.dart';
 
 class HomePage extends StatefulWidget {
   final user;
@@ -13,32 +15,35 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _bottomSheetScaffoldKey = GlobalKey<ScaffoldState>();
-
   _openBottomSheet() {
-    _bottomSheetScaffoldKey.currentState
-        .showBottomSheet((BuildContext context) {
-      return BottomAppBar(
-        child: Container(
-          height: 90,
-          width: double.infinity,
-          padding: EdgeInsets.all(16),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('fish'),
-              Container(
-                margin: EdgeInsets.only(right: 0),
-                child: GestureDetector(
-                  child: Text(this.widget.user.phoneNumber.toString()),
-                  onTap: () {},
-                ),
-              ),
-            ],
+    _bottomSheetScaffoldKey.currentState.showBottomSheet(
+      (BuildContext context) {
+        return BottomAppBar(
+          child: Container(
+            height: 90,
+            width: double.infinity,
+            padding: EdgeInsets.all(16),
+            child: ListView.builder(
+              itemCount: Provider.of<MealData>(context).mIdCount.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: <Widget>[
+                    Text(
+                        '${Provider.of<MealData>(context).mIdToMeal[Provider.of<MealData>(context).mIdCount.keys.elementAt(index)].name}'),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                        '${Provider.of<MealData>(context).mIdCount.values.elementAt(index)}'),
+                  ],
+                );
+              },
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   @override
@@ -64,14 +69,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: FutureBuilder(
-          future: fetchMeals(),
+          future: fetchMeals(context),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemCount: snapshot.data.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  Meals meal = snapshot.data[index];
+                  Meal meal = snapshot.data[index];
                   return Row(
                     children: <Widget>[
                       GestureDetector(
@@ -105,12 +110,18 @@ class _HomePageState extends State<HomePage> {
                               IconButton(
                                 icon: Icon(Icons.add),
                                 tooltip: 'Location',
-                                onPressed: _openBottomSheet,
+                                onPressed: () {
+                                  Provider.of<MealData>(context, listen: false)
+                                      .changeMIdCount(meal.mId, 1);
+                                },
                               ),
                               IconButton(
                                 icon: Icon(Icons.remove),
                                 tooltip: 'Location',
-                                onPressed: _openBottomSheet,
+                                onPressed: () {
+                                  Provider.of<MealData>(context, listen: false)
+                                      .changeMIdCount(meal.mId, -1);
+                                },
                               ),
                             ],
                           ),
