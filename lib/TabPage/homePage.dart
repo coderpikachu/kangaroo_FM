@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mysqltest/Data/meal-data.dart';
+import 'package:mysqltest/Data/order-without-user-info-data.dart';
 import 'package:provider/provider.dart';
 import '../Detail/detailPage.dart';
-import '../Meals/meals-api.dart';
-import '../Meals/meal.dart';
+import '../Api/meal-api.dart';
+import '../Model/meal.dart';
 
 class HomePage extends StatefulWidget {
   final user;
@@ -23,20 +24,38 @@ class _HomePageState extends State<HomePage> {
             height: 90,
             width: double.infinity,
             padding: EdgeInsets.all(16),
-            child: ListView.builder(
-              itemCount: Provider.of<MealData>(context).mIdCount.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: <Widget>[
-                    Text(
-                        '${Provider.of<MealData>(context).mIdToMeal[Provider.of<MealData>(context).mIdCount.keys.elementAt(index)].name}'),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                        '${Provider.of<MealData>(context).mIdCount.values.elementAt(index)}'),
-                  ],
+            child: Consumer<MealData>(
+              builder: (context, mealData, child) {
+                return ListView.builder(
+                  itemCount: mealData.mIdCount.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                                '${mealData.mIdToMeal[Provider.of<MealData>(context).mIdCount.keys.elementAt(index)].name}'),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                                '${mealData.mIdCount.values.elementAt(index)}'),
+                          ],
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.check),
+                          tooltip: 'Location',
+                          onPressed: () {
+                            Provider.of<OrderWithoutUserInfoData>(context,
+                                    listen: false)
+                                .addOrderWithoutUserInfo(mealData.mIdCount);
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
             ),
@@ -69,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: FutureBuilder(
-          future: fetchMeals(context),
+          future: fetchMeal(context),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mysqltest/Data/meal-data.dart';
+import 'package:mysqltest/Model/meal.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetailPage extends StatefulWidget {
+  final Map<String, int> mIdCount;
+  OrderDetailPage({this.mIdCount});
   @override
   _OrderDetailPageState createState() => _OrderDetailPageState();
 }
@@ -12,14 +17,21 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       appBar: AppBar(
         title: Text('Order Detail'),
       ),
-      body: ListView(
-        children: <Widget>[
-          Row(
+      body: ListView.builder(
+        itemCount: this.widget.mIdCount.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          Meal meal = Provider.of<MealData>(context)
+              .mIdToMeal[this.widget.mIdCount.keys.elementAt(index)];
+          return Row(
             children: <Widget>[
-              Image.asset(
-                'images/1.jpg',
-                width: 200,
-                height: 200,
+              GestureDetector(
+                child: Image.asset(
+                  'images/${meal.picture}',
+                  width: 200,
+                  height: 200,
+                ),
+                onTap: () {},
               ),
               SizedBox(
                 width: 50,
@@ -27,16 +39,16 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text('fish'),
+                  Text('${meal.name}'),
                   SizedBox(
                     height: 30,
                   ),
-                  Text('0'),
+                  Text('${this.widget.mIdCount.values.elementAt(index)}'),
                 ],
               ),
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mysqltest/Meals/meal.dart';
+import 'package:mysqltest/Data/user-data.dart';
+import 'package:mysqltest/Model/user.dart';
+import 'package:provider/provider.dart';
 import 'homePage.dart';
 import 'orderPage.dart';
 import 'myPage.dart';
@@ -14,6 +16,16 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    Provider.of<UserData>(context, listen: false).getUser(User(
+      uId: '1',
+      name: 'a',
+      telephone: ''
+          '16636185235',
+      address: '6-503',
+      consumption: 0,
+      firstDate: DateTime(2001, 4, 5),
+      lastDate: DateTime(2001, 4, 5),
+    ));
   }
 
   @override

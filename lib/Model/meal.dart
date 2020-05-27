@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-List<Meal> mealsFromJson(String str) =>
+List<Meal> mealFromJson(String str) =>
     List<Meal>.from(json.decode(str).map((x) => Meal.fromMap(x)));
 
-String mealsToJson(List<Meal> data) =>
+String mealToJson(List<Meal> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class Meal {

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mysqltest/Data/user-data.dart';
+import 'package:provider/provider.dart';
 
 import '../Authentic/login.dart';
 
@@ -35,7 +37,7 @@ class _MyPageState extends State<MyPage> {
               children: <Widget>[
                 Expanded(
                   child: RaisedButton(
-                    child: Text('手机号2'),
+                    child: Text(Provider.of<UserData>(context).user.telephone),
                     onPressed: () {},
                   ),
                 ),
