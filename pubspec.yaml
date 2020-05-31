@@ -31,6 +31,9 @@ dependencies:
   cloud_firestore:
   firebase_auth:
 
+  flutter_svg: ^0.17.4
+  smooth_star_rating: ^1.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,7 +51,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/
+    - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

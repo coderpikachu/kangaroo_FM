@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mysqltest/Authentic/phone.dart';
 import 'package:mysqltest/Data/meal-data.dart';
+import 'package:mysqltest/Screen/Authentic/Welcome/welcome_page.dart';
 import 'package:provider/provider.dart';
-import 'Authentic/signup.dart';
 import 'Data/order-without-user-info-data.dart';
 import 'Data/user-data.dart';
-import 'TabPage/mainPage.dart';
+import 'Screen/TabPage/main-page.dart';
 
 void main() {
   runApp(
@@ -23,7 +22,7 @@ void main() {
         ),
       ],
       child: MaterialApp(
-        home: MainPage(),
+        home: WelcomePage(),
       ),
     ),
   );
