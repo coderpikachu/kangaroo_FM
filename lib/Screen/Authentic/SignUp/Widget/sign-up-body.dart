@@ -9,9 +9,15 @@ import 'package:mysqltest/Widget/rounded-button.dart';
 import 'package:mysqltest/Widget/rounded_input_field.dart';
 import 'package:mysqltest/Widget/rounded_password_field.dart';
 
+import '../../phone-check-page.dart';
+import '../../phone-page.dart';
+
 class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String flat;
+    String dormitory;
+    String pwd;
     Size size = MediaQuery.of(context).size;
     return SignUpBackground(
       child: SingleChildScrollView(
@@ -28,15 +34,39 @@ class SignUpBody extends StatelessWidget {
               height: size.height * 0.35,
             ),
             RoundedInputField(
-              hintText: "Your Email",
-              onChanged: (value) {},
+              hintText: "Your Flat",
+              onChanged: (value) {
+                flat = value;
+              },
+            ),
+            RoundedInputField(
+              hintText: "Your Dormitory",
+              onChanged: (value) {
+                dormitory = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                pwd = value;
+              },
             ),
             RoundedButton(
-              text: "SIGNUP",
-              press: () {},
+              text: "CONTINUE",
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PhonePage(
+                        mode: 's',
+                        flat: flat,
+                        dormitory: dormitory,
+                        pwd: pwd,
+                      );
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
@@ -52,24 +82,24 @@ class SignUpBody extends StatelessWidget {
                 );
               },
             ),
-            SignUpOrDivider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SignUpSocialIcon(
-                  iconSrc: "assets/icons/facebook.svg",
-                  press: () {},
-                ),
-                SignUpSocialIcon(
-                  iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
-                ),
-                SignUpSocialIcon(
-                  iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
-                ),
-              ],
-            )
+//            SignUpOrDivider(),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: <Widget>[
+//                SignUpSocialIcon(
+//                  iconSrc: "assets/icons/facebook.svg",
+//                  press: () {},
+//                ),
+//                SignUpSocialIcon(
+//                  iconSrc: "assets/icons/twitter.svg",
+//                  press: () {},
+//                ),
+//                SignUpSocialIcon(
+//                  iconSrc: "assets/icons/google-plus.svg",
+//                  press: () {},
+//                ),
+//              ],
+//            )
           ],
         ),
       ),

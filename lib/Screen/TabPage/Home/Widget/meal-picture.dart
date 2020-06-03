@@ -25,8 +25,8 @@ class _MealPictureState extends State<MealPicture> {
       child: GestureDetector(
         child: Image.asset(
           'assets/images/${meal.picture}',
-          width: 200,
-          height: 200,
+          width: 150,
+          height: 150,
         ),
         onTap: () {
           Navigator.push(

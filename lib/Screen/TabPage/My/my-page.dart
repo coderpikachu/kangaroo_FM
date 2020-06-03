@@ -43,7 +43,7 @@ class _MyPageState extends State<MyPage> {
               children: <Widget>[
                 Expanded(
                   child: RaisedButton(
-                    child: Text(Provider.of<UserData>(context).user.telephone),
+                    child: Text(Provider.of<UserData>(context).user.uId),
                     onPressed: () {},
                   ),
                 ),

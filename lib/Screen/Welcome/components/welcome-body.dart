@@ -3,11 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mysqltest/Screen/Authentic/LogIn/log-in-page.dart';
 import 'package:mysqltest/Screen/Authentic/LogIn/log-in.dart';
 import 'package:mysqltest/Screen/Authentic/SignUp/sign-up-page.dart';
-import 'package:mysqltest/Screen/Authentic/Welcome/components/welcome-background.dart';
+import 'package:mysqltest/Screen/Welcome/components/welcome-background.dart';
 import 'package:mysqltest/Widget/rounded-button.dart';
 
-import '../../../../constants.dart';
-import '../../sign-up.dart';
+import '../../../constants.dart';
 
 class WelcomeBody extends StatelessWidget {
   @override

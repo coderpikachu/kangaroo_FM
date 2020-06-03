@@ -14,7 +14,7 @@ Future<String> postOrder(
     String mId_id,
     String uId_id) async {
   try {
-    String url = "http://10.0.2.2/models/orders.php";
+    String url = "http://kangaroo-canteen.com/orders.php";
 //    String sDate =
 //        "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
     final response = await http.post(url, body: {

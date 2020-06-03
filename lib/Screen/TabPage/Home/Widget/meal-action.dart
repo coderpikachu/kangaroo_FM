@@ -29,7 +29,10 @@ class _MealActionState extends State<MealAction> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Provider.of<MealData>(context, listen: false)
+                    .changeMIdCount(meal.mId, -1);
+              },
               child: Container(
                 height: 25.0,
                 width: 25.0,
@@ -51,7 +54,10 @@ class _MealActionState extends State<MealAction> {
                     fontFamily: 'Montserrat',
                     fontSize: 15.0)),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Provider.of<MealData>(context, listen: false)
+                    .changeMIdCount(meal.mId, 1);
+              },
               child: Container(
                 height: 25.0,
                 width: 25.0,
@@ -67,26 +73,6 @@ class _MealActionState extends State<MealAction> {
                 ),
               ),
             )
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              tooltip: 'Location',
-              onPressed: () {
-                Provider.of<MealData>(context, listen: false)
-                    .changeMIdCount(meal.mId, 1);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.remove),
-              tooltip: 'Location',
-              onPressed: () {
-                Provider.of<MealData>(context, listen: false)
-                    .changeMIdCount(meal.mId, -1);
-              },
-            ),
           ],
         ),
       ],

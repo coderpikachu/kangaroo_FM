@@ -1,39 +1,39 @@
 // To parse this JSON data, do
 //
-//     final user = userFromJson(jsonString);
+//     final user = userFromMap(jsonString);
 
 import 'dart:convert';
 
-List<User> userFromJson(String str) =>
+List<User> userFromMap(String str) =>
     List<User>.from(json.decode(str).map((x) => User.fromMap(x)));
 
-String userToJson(List<User> data) =>
+String userToMap(List<User> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class User {
-  String uId;
-  String name;
-  String telephone;
-  String address;
-  double consumption;
-  DateTime firstDate;
-  DateTime lastDate;
-
   User({
     this.uId,
     this.name,
-    this.telephone,
-    this.address,
+    this.flat,
+    this.dormitory,
     this.consumption,
     this.firstDate,
     this.lastDate,
   });
 
+  String uId;
+  String name;
+  String flat;
+  String dormitory;
+  String consumption;
+  DateTime firstDate;
+  DateTime lastDate;
+
   factory User.fromMap(Map<String, dynamic> json) => User(
         uId: json["uId"],
         name: json["name"],
-        telephone: json["telephone"],
-        address: json["address"],
+        flat: json["flat"],
+        dormitory: json["dormitory"],
         consumption: json["consumption"],
         firstDate: DateTime.parse(json["firstDate"]),
         lastDate: DateTime.parse(json["lastDate"]),
@@ -42,8 +42,8 @@ class User {
   Map<String, dynamic> toMap() => {
         "uId": uId,
         "name": name,
-        "telephone": telephone,
-        "address": address,
+        "flat": flat,
+        "dormitory": dormitory,
         "consumption": consumption,
         "firstDate":
             "${firstDate.year.toString().padLeft(4, '0')}-${firstDate.month.toString().padLeft(2, '0')}-${firstDate.day.toString().padLeft(2, '0')}",

@@ -16,12 +16,11 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     Provider.of<UserData>(context, listen: false).getUser(User(
-      uId: '1',
-      name: 'a',
-      telephone: ''
-          '16636185235',
-      address: '6-503',
-      consumption: 0,
+      uId: '16636185235',
+      name: 'SWB1436001',
+      flat: '6',
+      dormitory: '503',
+      consumption: '0',
       firstDate: DateTime(2001, 4, 5),
       lastDate: DateTime(2001, 4, 5),
     ));
